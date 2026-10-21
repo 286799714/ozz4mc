@@ -1,0 +1,280 @@
+/* PoseForge runtime preview panel (OZ.rt.preview) styles.
+ * Warm light panel chrome + dark skeleton viewport. AUI-compatible CSS only
+ * (no modern selectors or unsupported properties). */
+
+/* ---------------------------------------------------------------- panel --- */
+.pv-panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
+  background: var(--oz-panel);
+  color: var(--oz-text);
+  font-family: var(--oz-mono);
+  font-size: 11px;
+}
+.pv-panel + .pv-panel { border-left: 1px solid var(--oz-line); }
+.pv-panel * { box-sizing: border-box; }
+.pv-panel.pv-collapsed { height: auto; }
+.pv-panel.pv-collapsed .pv-body { display: none; }
+.pv-panel.pv-collapsed .pv-head { border-bottom: 0; }
+
+/* ----------------------------------------------------------------- head --- */
+.pv-head {
+  flex: none;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 6px 0 10px;
+  min-width: 0;
+  background: var(--oz-raised);
+  border-bottom: 1px solid var(--oz-line);
+}
+.pv-title {
+  flex: none;
+  font-family: var(--oz-mono);
+  font-size: 9.5px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--oz-muted);
+  white-space: nowrap;
+}
+.pv-stats {
+  flex: 0 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 9px;
+  letter-spacing: .02em;
+  color: var(--oz-faint);
+}
+.pv-head-right {
+  flex: none;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 1px;
+}
+.pv-head-right .oz-icon-btn { width: 20px; height: 20px; color: var(--oz-muted); }
+.pv-head-right .oz-icon-btn:hover { color: var(--oz-text); }
+.pv-head-right .oz-icon-btn.active { color: var(--oz-accent); background: var(--oz-accent-soft); border-color: var(--oz-accent-line); }
+
+/* ----------------------------------------------------------------- body --- */
+.pv-body {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+}
+
+/* ------------------------------------------------------------- viewport --- */
+.pv-viewport {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
+  background: var(--deep-dark);
+}
+.pv-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--deep-dark);
+  cursor: grab;
+}
+.pv-canvas:active { cursor: grabbing; }
+
+/* ------------------------------------------------------------------ hud --- */
+.pv-hud {
+  position: absolute;
+  top: 6px;
+  left: 8px;
+  right: 8px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  pointer-events: none;
+}
+.pv-hud-line {
+  display: none;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  max-width: 100%;
+}
+.pv-hud-line.has { display: flex; }
+.pv-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 17px;
+  max-width: 240px;
+  padding: 0 5px;
+  overflow: hidden;
+  border: 1px solid #393937;
+  background: #141413;
+  color: var(--ink-on-dark);
+  font-family: var(--oz-mono);
+  font-size: 8.5px;
+  line-height: 1;
+  letter-spacing: .02em;
+  white-space: nowrap;
+}
+.pv-chip-label {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.pv-chip-value { flex: none; opacity: .82; }
+.pv-chip-notify {
+  border-color: #8f4a33;
+  background: #3f271e;
+  color: #f0bda9;
+}
+.pv-chip-state {
+  border-color: #684d1c;
+  background: #322816;
+  color: #e5cf8a;
+}
+.pv-chip-curve {
+  border-color: #265270;
+  background: #1a2a34;
+  color: #a9c9e2;
+}
+.pv-chip-meta {
+  border-color: #302f2e;
+  background: #141413;
+  color: #bebdba;
+}
+.pv-hud-errors {
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  bottom: 6px;
+  z-index: 3;
+  display: none;
+  align-items: flex-start;
+  gap: 5px;
+  padding: 4px 6px;
+  border: 1px solid #6d2525;
+  background: #141413;
+  color: #d98080;
+  font-family: var(--oz-mono);
+  font-size: 9px;
+  line-height: 1.45;
+}
+.pv-hud-errors.has { display: flex; }
+.pv-hud-errors .oz-ico { flex: none; margin-top: 1px; color: #d98080; }
+.pv-hud-error-text { flex: 1 1 auto; overflow: hidden; }
+.pv-hint {
+  position: absolute;
+  right: 8px;
+  bottom: 5px;
+  z-index: 1;
+  color: #595957;
+  font-family: var(--oz-mono);
+  font-size: 8.5px;
+  letter-spacing: .04em;
+  pointer-events: none;
+}
+.pv-panel.pv-has-error .pv-hint { display: none; }
+
+/* ------------------------------------------------------------ transport --- */
+.pv-transport {
+  flex: none;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 0 8px 0 5px;
+  min-width: 0;
+  background: var(--oz-raised);
+  border-top: 1px solid var(--oz-line);
+  color: var(--oz-muted);
+}
+.pv-transport .oz-icon-btn {
+  width: 22px;
+  height: 22px;
+  color: var(--oz-muted);
+}
+.pv-transport .oz-icon-btn:hover { color: var(--oz-text); }
+.pv-transport .oz-icon-btn.active { color: var(--oz-accent); background: var(--oz-accent-soft); border-color: var(--oz-accent-line); }
+.pv-transport .pv-btn-loop { margin-left: 1px; }
+.pv-speed {
+  flex: none;
+  width: 58px;
+  height: 20px;
+  min-height: 20px;
+  margin: 0 3px;
+  padding: 0 1px;
+  font-size: 9.5px;
+  line-height: 1;
+}
+.pv-progress {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 36px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.pv-progress-track {
+  position: relative;
+  width: 100%;
+  height: 4px;
+  overflow: hidden;
+  background: var(--oz-line);
+}
+.pv-progress-fill {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  transform-origin: left center;
+  transform: scaleX(0);
+  background: var(--oz-accent);
+}
+.pv-progress-thumb {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  width: 100%;
+  height: 12px;
+  transform: translateX(0%);
+  pointer-events: none;
+}
+.pv-progress-thumb-mark {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  background: var(--oz-text);
+}
+.pv-time {
+  flex: none;
+  padding-left: 5px;
+  color: var(--oz-muted);
+  font-family: var(--oz-mono);
+  font-size: 9.5px;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+/* compact variant for very short docks */
+@media (max-height: 760px) {
+  .pv-head { height: 24px; }
+  .pv-transport { height: 28px; }
+  .pv-time { font-size: 8.5px; }
+}

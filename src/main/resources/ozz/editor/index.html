@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="aui-font-mode" content="web">
+  <meta name="aui-viewport" content="mode=browser,user-scalable=false">
+  <meta name="aui-mouse-events" content="intercept">
+  <title>PoseForge · ozz4mc 动画图编辑器</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23c96442'/%3E%3Crect x='4' y='4' width='8' height='8' fill='%23fdfdf9'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="vendor/theme/t03-claude-square.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/graph.css">
+  <link rel="stylesheet" href="css/montage.css">
+  <link rel="stylesheet" href="css/preview.css">
+  <link rel="stylesheet" href="css/opaque.css">
+</head>
+<body class="t03-claude-square-theme oz-root" data-oz-profile="false">
+  <div id="app" class="oz-app">
+    <header id="menubar" class="oz-menubar"></header>
+    <div id="toolbar" class="oz-toolbar"></div>
+    <div class="oz-body">
+      <aside id="sidebar" class="oz-sidebar">
+        <div class="oz-sidebar-head">
+          <span class="oz-sidebar-title">项目资源</span>
+          <span id="sidebar-actions" class="oz-sidebar-actions"></span>
+        </div>
+        <div id="sidebar-tree" class="oz-sidebar-tree oz-scroll"></div>
+        <div id="sidebar-context" class="oz-sidebar-context"></div>
+      </aside>
+      <div id="resizer-left" class="oz-resizer oz-resizer-left"></div>
+      <main class="oz-main">
+        <div id="doc-tabs" class="oz-doctabs"></div>
+        <div id="workspace" class="oz-workspace"></div>
+        <div id="welcome" class="oz-welcome"></div>
+      </main>
+      <div id="resizer-right" class="oz-resizer oz-resizer-right"></div>
+      <aside id="inspector" class="oz-inspector">
+        <div id="inspector-body" class="oz-inspector-root"></div>
+      </aside>
+    </div>
+    <footer id="statusbar" class="oz-statusbar"></footer>
+  </div>
+  <div id="overlay-root" class="oz-overlay-root"></div>
+  <div id="boot-splash" class="oz-boot">
+    <div class="oz-boot-inner">
+      <div class="oz-boot-mark"></div>
+      <div class="oz-boot-title">PoseForge</div>
+      <div class="oz-boot-sub">正在装载 Pose 动画图编辑器…</div>
+    </div>
+  </div>
+
+  <script src="js/compat.js"></script>
+  <script src="js/core/canvas-text.js"></script>
+  <script src="js/core/model.js"></script>
+  <script src="js/core/ui.js"></script>
+  <script src="js/core/history.js"></script>
+  <script src="js/core/inspector.js"></script>
+  <script src="js/core/app.js"></script>
+  <script src="js/shell/shell.js"></script>
+  <script src="js/shell/filetree.js"></script>
+  <script src="js/runtime/math.js"></script>
+  <script src="js/runtime/skeleton.js"></script>
+  <script src="js/runtime/clip.js"></script>
+  <script src="js/runtime/pose.js"></script>
+  <script src="js/runtime/graph-eval.js"></script>
+  <script src="js/runtime/montage-eval.js"></script>
+  <script src="js/runtime/transport.js"></script>
+  <script src="js/runtime/viewport.js"></script>
+  <script src="js/runtime/preview-panel.js"></script>
+  <script src="js/graph/graph-model.js"></script>
+  <script src="js/graph/graph-canvas.js"></script>
+  <script src="js/graph/graph-page.js"></script>
+  <script src="js/montage/montage-model.js"></script>
+  <script src="js/montage/montage-timeline.js"></script>
+  <script src="js/montage/montage-page.js"></script>
+  <script src="js/data/demo-project.js"></script>
+  <script src="js/core/performance.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

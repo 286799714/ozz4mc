@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "package": "com.maydaymemory.ozz4mc.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "mixins": [],
+  "client": [
+    "ApricityElementGeometryMixin",
+    "ApricityCanvasDrawImageMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}

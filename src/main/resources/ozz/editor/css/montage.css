@@ -1,0 +1,488 @@
+/* PoseForge Montage editor styles (timeline + dock tweaks).
+ * Warm t03-claude-square theme. AUI-compatible CSS:
+ * no :has / sticky / float / negative margins / calc multiply / text-shadow /
+ * no CSS color keyword inheritance outside SVG. Transitions limited to opacity +
+ * transform + background-color.
+ */
+
+/* --------------------------------------------------------------- layout --- */
+.oz-page-main.oz-mt-main {
+  flex-direction: column;
+}
+
+.oz-mt-host {
+  flex: 1 1 0px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+  position: relative;
+  overflow: hidden;
+  background: var(--oz-panel);
+}
+
+.oz-mt {
+  --mt-head-w: 168px;
+  flex: 1 1 0px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+  background: var(--oz-panel);
+  position: relative;
+}
+
+/* --------------------------------------------------------- top / ruler ---- */
+.oz-mt-top {
+  flex: none;
+  height: 26px;
+  display: flex;
+  align-items: stretch;
+  border-bottom: 1px solid var(--oz-line);
+  background: var(--oz-raised);
+  min-width: 0;
+}
+
+.oz-mt-corner {
+  flex: none;
+  width: var(--mt-head-w);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0 8px;
+  border-right: 1px solid var(--oz-line);
+  background: var(--oz-raised);
+  overflow: hidden;
+}
+.oz-mt-corner-label {
+  font-family: var(--oz-mono);
+  font-size: 8px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--oz-faint);
+  flex: none;
+}
+.oz-mt-corner-time {
+  font-family: var(--oz-mono);
+  font-size: 10px;
+  color: var(--oz-text);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.oz-mt-corner-sub {
+  margin-left: auto;
+  font-family: var(--oz-mono);
+  font-size: 8px;
+  color: var(--oz-faint);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.oz-mt-ruler-view {
+  flex: 1 1 0px;
+  position: relative;
+  overflow: hidden;
+  min-width: 0;
+  cursor: col-resize;
+  background: var(--oz-raised);
+}
+.oz-mt-ruler {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+}
+.oz-mt-ruler-playhead {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  display: block;
+  pointer-events: none;
+  transform: translateX(0px);
+  transform-origin: left top;
+}
+
+/* ------------------------------------------------------- head column ------ */
+.oz-mt-main {
+  flex: 1 1 0px;
+  display: flex;
+  min-height: 0;
+  min-width: 0;
+  position: relative;
+}
+.oz-mt-heads-view {
+  flex: none;
+  width: var(--mt-head-w);
+  position: relative;
+  overflow: hidden;
+  border-right: 1px solid var(--oz-line);
+  background: var(--oz-panel);
+}
+.oz-mt-heads {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.oz-mt-head {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 4px 0 0;
+  border-bottom: 1px solid var(--oz-line);
+  background: var(--oz-panel);
+  overflow: hidden;
+  cursor: default;
+  user-select: none;
+}
+.oz-mt-head.odd {
+  background: #faf9f4;
+}
+.oz-mt-head:hover {
+  background: var(--oz-raised);
+}
+.oz-mt-head.selected {
+  background: var(--oz-accent-soft);
+}
+.oz-mt-head.selected .oz-mt-head-stripe {
+  background: var(--oz-accent);
+}
+.oz-mt-head.muted .oz-mt-head-name,
+.oz-mt-head.muted .oz-mt-head-sub {
+  color: var(--oz-faint);
+}
+.oz-mt-head-stripe {
+  flex: none;
+  width: 3px;
+  height: 100%;
+  background: var(--oz-line-strong);
+}
+.oz-mt-head-clip .oz-mt-head-stripe { background: var(--oz-blue); }
+.oz-mt-head-notify .oz-mt-head-stripe { background: var(--oz-gold); }
+.oz-mt-head-notifyState .oz-mt-head-stripe { background: var(--oz-gold); }
+.oz-mt-head-curve .oz-mt-head-stripe { background: var(--oz-green); }
+
+.oz-mt-head-icon {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--oz-muted);
+}
+.oz-mt-head-clip .oz-mt-head-icon { color: var(--oz-blue); }
+.oz-mt-head-notify .oz-mt-head-icon,
+.oz-mt-head-notifyState .oz-mt-head-icon { color: var(--oz-gold); }
+.oz-mt-head-curve .oz-mt-head-icon { color: var(--oz-green); }
+
+.oz-mt-head-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 3px 0;
+}
+.oz-mt-head-name {
+  font-family: var(--oz-mono);
+  font-size: 10.5px;
+  line-height: 1.3;
+  color: var(--oz-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.oz-mt-head-sub {
+  font-family: var(--oz-mono);
+  font-size: 8.5px;
+  line-height: 1.3;
+  color: var(--oz-faint);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.oz-mt-head-tools {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  opacity: 0.55;
+}
+.oz-mt-head:hover .oz-mt-head-tools,
+.oz-mt-head.selected .oz-mt-head-tools {
+  opacity: 1;
+}
+.oz-mt-head-tools .oz-icon-btn {
+  width: 17px;
+  height: 17px;
+}
+.oz-mt-head-tools .oz-icon-btn .oz-ico {
+  width: 11px;
+  height: 11px;
+}
+.oz-mt-head-tools .oz-icon-btn.active {
+  color: var(--oz-accent);
+  background: var(--oz-accent-soft);
+  border-color: var(--oz-accent-line);
+}
+
+/* ------------------------------------------------------------- stage ------ */
+.oz-mt-stage {
+  flex: 1 1 0px;
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  background: var(--oz-panel);
+}
+.oz-mt-scroll {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+  background: #fdfcf8;
+}
+.oz-mt-sizer {
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.oz-mt-canvas-layer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.oz-mt-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+}
+.oz-mt-playhead {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  z-index: 1;
+  background: var(--oz-accent);
+  pointer-events: none;
+  transform: translateX(0px);
+  transform-origin: left top;
+}
+
+/* -------------------------------------------------------------- chips ----- */
+.oz-mt-chip {
+  appearance: none;
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 22px;
+  margin: 0;
+  padding: 0 7px;
+  border: 1px solid var(--oz-line);
+  background: var(--oz-raised);
+  color: var(--oz-text);
+  font-family: var(--oz-mono);
+  font-size: 10px;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 0;
+  white-space: nowrap;
+}
+.oz-mt-chip:hover {
+  border-color: var(--oz-line-strong);
+  background: var(--oz-panel);
+}
+.oz-mt-chip:active {
+  background: var(--oz-line);
+}
+.oz-mt-chip-label {
+  font-size: 9px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--oz-faint);
+}
+.oz-mt-chip-value {
+  font-size: 10px;
+  color: var(--oz-text);
+  max-width: 132px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.oz-mt-zoom {
+  flex: none;
+  min-width: 52px;
+  text-align: center;
+  font-family: var(--oz-mono);
+  font-size: 9px;
+  color: var(--oz-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* --------------------------------------------------------------- dock ----- */
+.oz-mt-dock {
+  height: 224px;
+}
+.oz-mt-dock .oz-dock-head {
+  gap: 8px;
+}
+.oz-mt-dock .oz-dock-title {
+  letter-spacing: .12em;
+}
+.oz-mt-dock .oz-btn-tiny {
+  height: 18px;
+  font-size: 9px;
+  padding: 0 6px;
+}
+.oz-mt-dock .oz-btn-tiny .oz-ico {
+  width: 11px;
+  height: 11px;
+}
+.oz-mt-dock.collapsed .oz-dock-head {
+  border-bottom: 0;
+}
+
+.oz-mt-hud-flash {
+  flex: none;
+  margin-left: 4px;
+  font-family: var(--oz-mono);
+  font-size: 9px;
+  letter-spacing: .04em;
+  color: var(--oz-accent);
+  opacity: 0;
+  transform: translateY(2px);
+  transition: opacity 120ms ease, transform 120ms ease;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 220px;
+}
+.oz-mt-hud-flash.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ------------------------------------------------- preview fallback ------- */
+.oz-mt-fallback {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--deep-dark);
+  color: var(--ink-on-dark);
+  overflow: hidden;
+}
+.oz-mt-fallback-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  padding: 16px;
+  text-align: center;
+  max-width: 620px;
+}
+.oz-mt-fallback-icon {
+  color: var(--gray-50);
+}
+.oz-mt-fallback-title {
+  font-family: var(--oz-serif);
+  font-size: 18px;
+  line-height: 1.2;
+  color: var(--ink-on-dark);
+}
+.oz-mt-fallback-text {
+  font-family: var(--oz-mono);
+  font-size: 10px;
+  line-height: 1.6;
+  color: var(--gray-40);
+}
+.oz-mt-fallback-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+}
+.oz-mt-fallback-time {
+  font-family: var(--oz-mono);
+  font-size: 11px;
+  color: var(--gold-vip);
+  font-variant-numeric: tabular-nums;
+}
+.oz-mt-fallback-hint {
+  font-family: var(--oz-mono);
+  font-size: 9px;
+  color: var(--gray-50);
+}
+
+/* ------------------------------------------------------------- sidebar ---- */
+.oz-mt-side-title {
+  margin: 8px 0 4px;
+  font-family: var(--oz-mono);
+  font-size: 8.5px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--oz-faint);
+}
+.oz-mt-side-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 2px 0 8px;
+  border-bottom: 1px solid var(--oz-line);
+}
+.oz-mt-side-track {
+  height: 24px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 4px;
+  cursor: pointer;
+  border-left: 2px solid transparent;
+  color: var(--oz-text);
+}
+.oz-mt-side-track:hover {
+  background: var(--oz-raised);
+}
+.oz-mt-side-track.selected {
+  background: var(--oz-accent-soft);
+  border-left-color: var(--oz-accent);
+}
+.oz-mt-side-dot {
+  flex: none;
+  width: 6px;
+  height: 6px;
+  background: var(--oz-line-strong);
+}
+.oz-mt-dot-clip { background: var(--oz-blue); }
+.oz-mt-dot-notify { background: var(--oz-gold); }
+.oz-mt-dot-notifyState { background: var(--oz-gold); }
+.oz-mt-dot-curve { background: var(--oz-green); }
+.oz-mt-side-name {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: var(--oz-mono);
+  font-size: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.oz-mt-side-count {
+  flex: none;
+  font-family: var(--oz-mono);
+  font-size: 8.5px;
+  color: var(--oz-faint);
+}
+
+/* --------------------------------------------------------- narrow mode ---- */
+@media (max-width: 1200px) {
+  .oz-mt {
+    --mt-head-w: 148px;
+  }
+  .oz-mt-corner-sub {
+    display: none;
+  }
+}

@@ -1,0 +1,48 @@
+/* Opaque rendering experiment: avoid AUI's offscreen opacity/filter groups.
+ * Keep this after the theme and editor styles. Hidden UI uses visibility/display,
+ * so opening and closing dialogs still works without alpha transitions.
+ */
+html,
+body.oz-root,
+body.oz-root *,
+body.oz-root *::before,
+body.oz-root *::after {
+  opacity: 1 !important;
+  filter: none !important;
+  backdrop-filter: none !important;
+  mix-blend-mode: normal !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+body.oz-root .oz-modal-backdrop,
+body.oz-root .oz-toast,
+body.oz-root .oz-mt-hud-flash,
+body.oz-root .toast,
+body.oz-root .toast-2 {
+  visibility: hidden !important;
+}
+
+body.oz-root .oz-modal-backdrop.open,
+body.oz-root .oz-toast.show,
+body.oz-root .oz-mt-hud-flash.show,
+body.oz-root .toast.show,
+body.oz-root .toast[data-state="open"],
+body.oz-root .toast-2.show,
+body.oz-root .toast-2[data-state="open"] {
+  visibility: visible !important;
+}
+
+body.oz-root .oz-hidden {
+  display: none !important;
+}
+
+/* Disabled controls remain distinguishable without fading the whole subtree. */
+body.oz-root .oz-btn[disabled],
+body.oz-root .oz-icon-btn[disabled],
+body.oz-root .oz-menu-item.disabled,
+body.oz-root .oz-g-lib-item.disabled {
+  color: #8d846e;
+}
